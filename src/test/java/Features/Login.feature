@@ -1,7 +1,7 @@
 Feature: LoginFeature
   This Login feature will login to the application under test
 
-  Scenario: Login Succesfully with correct UserName and Password
+  Scenario: Guest users visits Tescos page and clicks on the x Cookie icon 
     Given User Navigaties to Tesco page
     And Test to return the HTTP responce of the server OH YEAH
     And User enters correct password details
