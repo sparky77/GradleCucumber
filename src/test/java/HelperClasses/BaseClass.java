@@ -1,52 +1,35 @@
-package BaseClass;
+package HelperClasses;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import HelperClasses.WebDriver.WebDriverLaucher;
 import org.openqa.selenium.*;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriverService;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static HelperClasses.WebDriver.WebDriverLaucher.driver;
+
 /**
  * Created by marcus on 29/04/2018.
- * This below class is BaseClass to be extended by any class using the webDriver.
+ * This below class is HelperClasses to be extended by any class using the webDriver.
  * Writting clever custome methods to interact with page, without the need for extras, such as waits - work in progress
  */
 public class BaseClass {
-    public static final String baseUrl = setBaseUrl();
-    public WebDriver driver;
-    public final String resourceLocation = "/src/test/resources/";
 
+    public String baseUrl = setBaseUrl();
+    public WebDriverLaucher driverLauncher;
 
     public static String setBaseUrl(){
         String baseUrl = "https://www.tesco.com/";
         return baseUrl;
     }
 
-    public WebDriver lauchingDriverType(String driverType){
-        File classPathRoot = new File(System.getProperty("user.dir"));
-        switch(driverType.toLowerCase()) {
-            case "chrome":
-                System.setProperty("webdriver.chrome.driver", classPathRoot + resourceLocation + "chromedriver.exe");
-                driver = new ChromeDriver();
-                break;
-            case "phantomjs":
-                DesiredCapabilities caps = new DesiredCapabilities();
-                caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, classPathRoot + resourceLocation + "phantomjs.exe");
-                driver = new PhantomJSDriver(caps);
-                break;
-        }
-        return driver;
+    public void startDriver(){
+       driverLauncher = new WebDriverLaucher();
     }
 
     public void visit(String url){
@@ -57,7 +40,7 @@ public class BaseClass {
         return driver.findElement(locator);
     }
 
-    // Below is experimental - but working
+    // Below is experimental - but working with intergrated fluent wait
     public void click(By locator){
         WebDriverWait wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
