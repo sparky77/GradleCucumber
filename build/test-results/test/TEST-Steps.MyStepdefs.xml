@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Steps.MyStepdefs" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-03-31T15:31:39" hostname="MARCUS-DESKTOP" time="0.645">
+  <properties/>
+  <testcase name="RequestHTTPResponceCode" classname="Steps.MyStepdefs" time="0.645"/>
+  <system-out><![CDATA[Getting HTTP responce code method
+200
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
