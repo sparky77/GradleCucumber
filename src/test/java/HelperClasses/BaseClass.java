@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 import static HelperClasses.WebDriver.WebDriverLaucher.driver;
 
@@ -24,7 +25,7 @@ public class BaseClass {
     public WebDriverLaucher driverLauncher;
 
     public static String setBaseUrl(){
-        String baseUrl = "https://www.tesco.com/";
+        String baseUrl = ReadFrom.propertiesFile("defaultSetupProperties","url");
         return baseUrl;
     }
 
@@ -42,7 +43,7 @@ public class BaseClass {
 
     // Below is experimental - but working with intergrated fluent wait
     public void click(By locator){
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 

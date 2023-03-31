@@ -3,8 +3,6 @@ package HelperClasses.WebDriver;
 import HelperClasses.ReadFrom;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
@@ -23,11 +21,8 @@ public abstract class WebDriverTypeConfig {
                 System.setProperty("webdriver.chrome.driver", fullPathToDrivers + "chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
-            case "phantomjs":
-                DesiredCapabilities caps = new DesiredCapabilities();
-                caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, fullPathToDrivers + "phantomjs.exe");
-                driver = new PhantomJSDriver(caps);
-                break;
+            case "remote":
+
         }
         return driver;
     }
